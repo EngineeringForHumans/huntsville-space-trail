@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Huntsville Space Trail</title>
+  <meta name="description" content="A free map of the places where Huntsville's space history happened.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-view="map">
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c3 2.5 4.5 6 4.5 10.5L18 15v3l-3-1.2-.8 2.2h-4.4L9 16.8 6 18v-3l1.5-2.5C7.5 8 9 4.5 12 2zm0 6.2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM10.5 20h3L12 23z"/></svg>
+      <div>
+        <h1>Huntsville Space Trail</h1>
+        <p class="tagline">Where Rocket City history happened</p>
+      </div>
+    </div>
+    <button type="button" class="btn-ghost" id="about-btn">About</button>
+  </header>
+
+  <div class="concept-banner" role="note">
+    <strong>AI-generated concept.</strong>
+    The sites, map pins, and history here haven't been researched or checked yet. Don't rely on them to plan a visit.
+  </div>
+
+  <main class="layout">
+    <aside class="panel" id="panel" aria-label="Sites and filters">
+      <div class="panel-controls">
+        <label class="visually-hidden" for="search">Search sites</label>
+        <input type="search" id="search" placeholder="Search sites" autocomplete="off">
+
+        <label class="field-label" for="route-select">Route</label>
+        <select id="route-select">
+          <option value="">All sites</option>
+        </select>
+        <div id="route-info" class="route-info" hidden></div>
+
+        <details class="filters" id="filters">
+          <summary>Filters <span id="filter-count" class="filter-count" hidden></span></summary>
+          <div id="filter-groups"></div>
+          <button type="button" class="btn-link" id="clear-filters">Clear filters</button>
+        </details>
+
+        <div class="list-head">
+          <span id="result-count" aria-live="polite"></span>
+          <button type="button" class="btn-small" id="near-me">Sort by distance</button>
+        </div>
+      </div>
+      <ol class="site-list" id="site-list"></ol>
+    </aside>
+
+    <div class="map-wrap">
+      <div id="map" aria-label="Map of sites"></div>
+      <div class="legend" id="legend" aria-label="Map legend"></div>
+    </div>
+
+    <section class="detail" id="detail" hidden aria-labelledby="detail-name">
+      <button type="button" class="detail-close" id="detail-close" aria-label="Close site details">&times;</button>
+      <div id="detail-body"></div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="View">
+    <button type="button" data-view-btn="map" aria-pressed="true">Map</button>
+    <button type="button" data-view-btn="list" aria-pressed="false">List</button>
+  </nav>
+
+  <dialog id="about">
+    <form method="dialog">
+      <h2>About this trail</h2>
+      <p>Huntsville Space Trail maps the places where Huntsville's space history happened, from the Rocket Team's arrival in 1950 to the Artemis program today.</p>
+      <h3>How to read access labels</h3>
+      <ul>
+        <li><strong>Open to the public:</strong> You can visit. Some sites charge admission.</li>
+        <li><strong>Viewable from outside:</strong> You can see it from a street or parking lot, but you can't go in.</li>
+        <li><strong>Restricted:</strong> Inside Redstone Arsenal or otherwise closed to visitors. Pins for restricted sites are approximate.</li>
+      </ul>
+      <h3>This is an AI-generated concept</h3>
+      <p>An AI assistant drafted this site, including the site list, map pins, and history text, as a concept. No research or site visits have been done to check it yet. Locations may be wrong, facts may be wrong, and hours and access can change. Check each site's sources before you go.</p>
+      <h3>The whole history</h3>
+      <p>Many members of von Braun's team built the V-2 missile in Nazi Germany, a program that used concentration-camp forced labor. This trail tells Huntsville's space story, including that part of it.</p>
+      <p class="credits">Map data &copy; OpenStreetMap contributors. Site descriptions cite their sources on each site page.</p>
+      <button class="btn-primary" value="close">Close</button>
+    </form>
+  </dialog>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="data/sites.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
