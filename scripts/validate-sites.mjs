@@ -48,6 +48,7 @@ const BOUNDS = { minLat: 34.2, maxLat: 35.1, minLng: -87.6, maxLng: -85.6 };
 const REQUIRED_TEXT = ["id", "name", "address", "hours", "summary", "history"];
 const ID_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const CREDIT_ROLES = new Set(["added", "verified", "edited", "research", "photo"]);
 
 const seen = new Set();
 const siteIds = new Set(data.sites.map((s) => s.id));
@@ -97,6 +98,29 @@ data.sites.forEach((site, i) => {
     }
   } else {
     warn(`${label}: not verified yet.`);
+  }
+
+  if (site.credits !== undefined) {
+    if (!Array.isArray(site.credits)) {
+      err(`${label}: "credits" must be a list.`);
+    } else {
+      site.credits.forEach((c, j) => {
+        const where = `${label}: credit ${j + 1}`;
+        if (!c || typeof c.name !== "string" || !c.name.trim()) err(`${where} needs a "name".`);
+        else if (c.name.length > 80) err(`${where}: "name" must be 80 characters or fewer.`);
+        else if (/@[^\s]+\.[a-z]{2,}/i.test(c.name)) err(`${where}: "name" looks like an email address. Use a name or username instead.`);
+        if (!CREDIT_ROLES.has(c?.role)) err(`${where}: "role" must be one of ${[...CREDIT_ROLES].join(", ")}.`);
+        if (c?.date !== undefined && (typeof c.date !== "string" || !DATE_PATTERN.test(c.date) || isNaN(Date.parse(c.date)))) {
+          err(`${where}: "date" must be a date like "2026-12-05".`);
+        }
+        if (c?.url !== undefined && (typeof c.url !== "string" || !/^https:\/\/\S+$/.test(c.url))) {
+          err(`${where}: "url" must start with https://.`);
+        }
+      });
+      if (site.lastVerified && !site.credits.some((c) => c?.role === "verified")) {
+        warn(`${label}: has a "lastVerified" date but no "verified" credit.`);
+      }
+    }
   }
 
   if (!Array.isArray(site.routes)) {

@@ -224,6 +224,13 @@ input[type="search"], select {
 .detail h3 { font-size: 14px; margin: 18px 0 6px; }
 .detail .sources { padding-left: 18px; margin: 0; font-size: 14px; }
 .detail .sources a { color: var(--focus); }
+.detail .credits-list { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+.detail .credits-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.detail .credits-list li:last-child { border-bottom: 0; }
+.detail .credit-name { font-weight: 600; }
+.detail .credit-name a, .detail .credit-empty a { color: var(--focus); }
+.detail .credit-role { color: var(--muted); }
+.detail .credit-empty { font-size: 14px; color: var(--muted); margin: 0; }
 .notice {
   font-size: 13px; padding: 8px 10px; border-radius: 8px; margin: 10px 0;
   background: color-mix(in srgb, var(--viewable) 14%, var(--surface));

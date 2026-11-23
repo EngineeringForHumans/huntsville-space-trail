@@ -52,7 +52,10 @@ Copy this template into the `sites` list and fill it in:
     { label: "Source name", url: "https://example.org/page" }
   ],
   lastVerified: null,                    // or the date you confirmed it, like "2026-12-05"
-  routes: []                             // route ids this site belongs to, if any
+  routes: [],                            // route ids this site belongs to, if any
+  credits: [                             // optional; see "Get credit" below
+    { name: "Your Name", role: "added", date: "2026-12-05", url: "https://github.com/your-username" }
+  ]
 },
 ```
 
@@ -64,11 +67,47 @@ When you confirm a site in person or with a primary source:
 2. Remove `precision: "approximate"` if the pin is now accurate.
 3. Check `access`, `cost`, `hours`, and the history text.
 4. Set `lastVerified` to the date you checked, for example `"2026-12-05"`.
-5. In your pull request, describe how you verified it, such as "Visited on December 5" or "Confirmed with the NPS landmark record."
+5. Add yourself to the site's `credits` with the role `verified`. See [Get credit](#get-credit).
+6. In your pull request, describe how you verified it, such as "Visited on December 5" or "Confirmed with the NPS landmark record."
 
 ### Add a site to a route
 
 Add the site's `id` to the route's `stops` list in visiting order. Then add the route's `id` to the site's `routes` list. The data check fails if these two lists don't match.
+
+## Get credit
+
+You can sign your work in two places. Both are optional.
+
+### On the site page
+
+Each site page has a **Contributors** section. To appear there, add an entry to that site's `credits` list:
+
+```js
+credits: [
+  { name: "Your Name", role: "verified", date: "2026-12-05", url: "https://github.com/your-username" }
+]
+```
+
+| Field | Required? | What to put |
+| --- | --- | --- |
+| `name` | Yes | How you want to be credited. A real name, a nickname, or your GitHub username all work |
+| `role` | Yes | `added`, `verified`, `edited`, `research`, or `photo` |
+| `date` | No | The date you did the work, like `"2026-12-05"` |
+| `url` | No | A link to your GitHub profile or website. It must start with `https://` |
+
+If someone already has a credit on the site, add yours below theirs. Don't remove other people's credits.
+
+### In the contributors list
+
+Add a line about yourself to [CONTRIBUTORS.md](CONTRIBUTORS.md). Follow the format in that file.
+
+### If you contributed through an issue
+
+You don't have to edit files to get credit. Issue forms ask how you'd like to be credited. When a maintainer adds your suggestion or correction, they add your credit for you.
+
+### Privacy
+
+Your credit is public, and it stays in the project's history even if it's removed later. Don't include an email address, phone number, or home address. If you'd rather stay anonymous, leave out your credit, or ask a maintainer to credit you as "Anonymous contributor."
 
 ## Preview your changes
 

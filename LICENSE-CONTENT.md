@@ -4,7 +4,7 @@ The written content of Huntsville Space Trail is licensed under the
 [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 The full legal text is at <https://creativecommons.org/licenses/by/4.0/legalcode>.
 
-Copyright (c) 2026 EngineeringForHumans and Huntsville Space Trail contributors.
+Copyright (c) 2026 Huntsville Space Trail contributors.
 
 ## What this license covers
 

@@ -65,6 +65,12 @@ body:
       label: Visit
       options:
         - label: I've visited this site recently and confirmed it's still there.
+  - type: input
+    id: credit
+    attributes:
+      label: How should we credit you?
+      description: Your name appears on the site page and in the contributors list. Use a real name, a nickname, or your GitHub username. Leave it blank to stay anonymous. Don't include an email address.
+      placeholder: Jane Smith
   - type: checkboxes
     id: license
     attributes:

@@ -288,7 +288,8 @@
       <h3>Sources</h3>
       <ul class="sources">
         ${s.sources.map((src) => `<li><a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(src.label)}</a></li>`).join("")}
-      </ul>`;
+      </ul>
+      ${renderCredits(s)}`;
     els.detail.hidden = false;
     els.detail.scrollTop = 0;
 
@@ -302,6 +303,38 @@
       }
       setTimeout(() => { btn.textContent = "Copy link"; }, 2000);
     });
+  }
+
+  const CREDIT_ROLES = {
+    added: "Added this site",
+    verified: "Verified",
+    edited: "Edited",
+    research: "Research",
+    photo: "Photo"
+  };
+
+  function formatDate(iso) {
+    const d = new Date(`${iso}T12:00:00`);
+    return isNaN(d) ? iso : d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  }
+
+  function renderCredits(site) {
+    const credits = Array.isArray(site.credits) ? site.credits : [];
+    const contributeUrl = "https://github.com/EngineeringForHumans/huntsville-space-trail/blob/main/CONTRIBUTING.md";
+    if (!credits.length) {
+      return `
+        <h3>Contributors</h3>
+        <p class="credit-empty">No one has added or verified this site yet. <a href="${contributeUrl}" target="_blank" rel="noopener">Help check it</a> and get credit.</p>`;
+    }
+    const items = credits.map((c) => {
+      const name = /^https:\/\//.test(c.url || "")
+        ? `<a href="${esc(c.url)}" target="_blank" rel="noopener nofollow ugc">${esc(c.name)}</a>`
+        : esc(c.name);
+      const role = CREDIT_ROLES[c.role] || "Contributed";
+      const date = c.date ? ` &middot; ${esc(formatDate(c.date))}` : "";
+      return `<li><span class="credit-name">${name}</span><span class="credit-role">${esc(role)}${date}</span></li>`;
+    }).join("");
+    return `<h3>Contributors</h3><ul class="credits-list">${items}</ul>`;
   }
 
   function render({ fit = false } = {}) {

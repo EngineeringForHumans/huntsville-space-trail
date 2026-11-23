@@ -13,4 +13,5 @@
 - [ ] I didn't add the address of a private home.
 - [ ] Restricted sites are labeled `restricted`.
 - [ ] I previewed the site locally, or this change doesn't affect the page.
+- [ ] Optional: I added myself to the site's `credits` and to `CONTRIBUTORS.md`.
 - [ ] I agree to license my contribution under CC BY 4.0 (content) and the MIT License (code).

@@ -2,6 +2,7 @@
 // Every site is UNVERIFIED until someone confirms its location, access, and facts.
 // When you verify a site, set `lastVerified` to the date (YYYY-MM-DD) and fix `lat`/`lng`.
 // `precision: "approximate"` flags pins that are known to be rough guesses.
+// `credits` (optional) lists who added, verified, or edited a site. See CONTRIBUTING.md#get-credit.
 
 window.TRAIL = {
   eras: [
