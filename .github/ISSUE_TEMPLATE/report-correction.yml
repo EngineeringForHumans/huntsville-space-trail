@@ -1,0 +1,49 @@
+name: Report a correction
+description: Fix a wrong fact, pin location, hours, or access label, or confirm a site you visited.
+title: "Correction: "
+labels: ["correction"]
+body:
+  - type: input
+    id: site
+    attributes:
+      label: Which site?
+      description: The site name, or the link to it, such as https://huntsvillespacetrail.com/#site=hermes-missile.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What needs to change?
+      multiple: true
+      options:
+        - "Pin location"
+        - "Address"
+        - "Hours or cost"
+        - "Access label (open, viewable, restricted)"
+        - "History or facts"
+        - "Broken source link"
+        - "The site no longer exists"
+        - "Nothing. I visited and it's all correct"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What's wrong, and what should it say instead? For a pin, include coordinates or a map link.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: How do you know?
+      description: A source link, or a note like "Visited on December 5, 2026."
+    validations:
+      required: true
+  - type: checkboxes
+    id: license
+    attributes:
+      label: License
+      options:
+        - label: I agree that the information I share here can be published under CC BY 4.0.
+          required: true

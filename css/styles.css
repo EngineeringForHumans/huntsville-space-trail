@@ -245,6 +245,7 @@ dialog h2 { margin-top: 0; }
 dialog h3 { font-size: 15px; margin: 16px 0 4px; }
 dialog ul { padding-left: 18px; }
 .credits { font-size: 12px; color: var(--muted); }
+dialog a { color: var(--focus); }
 
 /* Tab bar (mobile only) */
 .tabbar { display: none; }

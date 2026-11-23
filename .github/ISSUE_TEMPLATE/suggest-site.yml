@@ -1,0 +1,74 @@
+name: Suggest a site
+description: Tell us about a place connected to Huntsville's space history.
+title: "Site suggestion: "
+labels: ["site suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a site. You don't need to fill in every field. A name, a location, and one good source are enough to start.
+
+        Please don't include the address of a private home.
+  - type: input
+    id: name
+    attributes:
+      label: Site name
+      placeholder: Saturn IB at the Ardmore Welcome Center
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: A street address, a description, or a map link.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters
+      description: How is this place connected to the space program?
+    validations:
+      required: true
+  - type: dropdown
+    id: access
+    attributes:
+      label: Can the public visit it?
+      options:
+        - "Yes, it's open to the public"
+        - "You can see it from outside"
+        - "No, it's restricted"
+        - "I'm not sure"
+    validations:
+      required: true
+  - type: dropdown
+    id: era
+    attributes:
+      label: Era
+      options:
+        - "Arrival and Redstone (1950–1959)"
+        - "Saturn and Apollo (1960–1975)"
+        - "Skylab, Shuttle, and ISS (1973–2011)"
+        - "SLS and Artemis (2011–today)"
+        - "Spans many eras"
+        - "I'm not sure"
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Links or references that back up the facts, such as NASA pages, marker text, archives, or news articles.
+    validations:
+      required: true
+  - type: checkboxes
+    id: visited
+    attributes:
+      label: Visit
+      options:
+        - label: I've visited this site recently and confirmed it's still there.
+  - type: checkboxes
+    id: license
+    attributes:
+      label: License
+      options:
+        - label: I agree that the information I share here can be published under CC BY 4.0.
+          required: true
